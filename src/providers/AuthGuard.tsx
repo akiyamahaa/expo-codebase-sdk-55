@@ -1,5 +1,5 @@
 import { useAuthStore } from "@/features/auth/store/auth.store";
-import { router, useSegments } from "expo-router";
+import { useSegments } from "expo-router";
 import { PropsWithChildren, useEffect } from "react";
 
 export function AuthGuard({ children }: PropsWithChildren) {
@@ -15,14 +15,15 @@ export function AuthGuard({ children }: PropsWithChildren) {
     const inPublicGroup = rootGroup === "(public)";
     const inProtectedGroup = rootGroup === "(protected)";
 
-    if (status === "authenticated" && inPublicGroup) {
-      router.replace("/(protected)/(tabs)");
-      return;
-    }
+    // TODO: UNCOMMENT WHEN DONE LOGIC AUTH
+    // if (status === "authenticated" && inPublicGroup) {
+    //   router.replace("/(protected)/(tabs)");
+    //   return;
+    // }
 
-    if (status === "unauthenticated" && inProtectedGroup) {
-      router.replace("/(public)/sign-in");
-    }
+    // if (status === "unauthenticated" && inProtectedGroup) {
+    //   router.replace("/(public)/sign-in");
+    // }
   }, [segments, status, isHydrated]);
 
   if (!isHydrated || status === "checking") {

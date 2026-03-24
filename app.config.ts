@@ -16,9 +16,12 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
 
   ios: {
     icon: "./assets/expo.icon",
+    bundleIdentifier: "com.aki.yourapp",
+    supportsTablet: false,
   },
 
   android: {
+    package: "com.aki.yourapp",
     adaptiveIcon: {
       backgroundColor: "#E6F4FE",
       foregroundImage: "./assets/images/systems/android-icon-foreground.png",
@@ -59,7 +62,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     reactCompiler: true,
   },
   extra: {
-    appEnv: process.env.EXPO_PUBLIC_APP_ENV ?? "development",
-    apiUrl: process.env.EXPO_PUBLIC_API_URL ?? "https://api.example.com",
+    APP_ENV: process.env.EXPO_PUBLIC_APP_ENV ?? "development",
+    API_URL: process.env.EXPO_PUBLIC_API_URL ?? "https://api.example.com",
   },
 });

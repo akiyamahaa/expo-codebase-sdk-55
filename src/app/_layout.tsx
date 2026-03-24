@@ -10,12 +10,13 @@ export default function RootLayout() {
     <AppProviders>
       <StatusBar style={colorScheme === "dark" ? "light" : "dark"} />
       <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="index" />
         <Stack.Screen name="(public)" />
         <Stack.Screen name="(protected)" />
-        <Stack.Screen
+        {/* <Stack.Screen
           name="modal/example"
           options={{ presentation: "modal" }}
-        />
+        /> */}
       </Stack>
     </AppProviders>
   );
