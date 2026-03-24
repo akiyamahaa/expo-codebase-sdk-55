@@ -1,5 +1,6 @@
 import { PropsWithChildren, useEffect } from "react";
 
+import { hydrateAuth, signOutAuth } from "@/features/auth/lib/auth-actions";
 import { useAuthStore } from "@/features/auth/store/auth.store";
 import {
   registerAccessTokenGetter,
@@ -11,14 +12,14 @@ export function AuthBootstrap({ children }: PropsWithChildren) {
     registerAccessTokenGetter(() => useAuthStore.getState().accessToken);
 
     registerUnauthorizedHandler(async () => {
-      const { status, signOut } = useAuthStore.getState();
+      const { status } = useAuthStore.getState();
 
       if (status === "authenticated") {
-        await signOut();
+        await signOutAuth();
       }
     });
 
-    void useAuthStore.getState().hydrate();
+    void hydrateAuth();
   }, []);
 
   return <>{children}</>;

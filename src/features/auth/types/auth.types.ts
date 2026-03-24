@@ -26,6 +26,9 @@ export interface SignInResponse {
 
 export interface SignUpResponse {
   message: string;
+  email?: string;
+  verificationId?: string;
+  expiresAt?: string;
 }
 
 export interface ApiErrorResponse {

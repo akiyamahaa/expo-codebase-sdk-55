@@ -9,7 +9,7 @@ export function registerAccessTokenGetter(getter: AccessTokenGetter) {
   getAccessToken = getter;
 }
 
-export function readAccessToken() {
+export function readAccessToken(): string | null {
   return getAccessToken();
 }
 
@@ -25,4 +25,10 @@ export async function notifyUnauthorized() {
   }
 
   return unauthorizedPromise;
+}
+
+export function resetAuthTokenBindings() {
+  getAccessToken = () => null;
+  onUnauthorized = () => undefined;
+  unauthorizedPromise = null;
 }
